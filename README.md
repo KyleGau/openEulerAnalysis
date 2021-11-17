@@ -9,3 +9,8 @@ Exploratory analysis of openEuler Community
 python getOrgRepos.py openeuler
 python getOrgRepos.py src-openeuler
 ```
+2. Clone all retrieved repositories to local /data/gitee_repos folder.
+
+```
+./gitClone.sh
+```

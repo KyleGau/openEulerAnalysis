@@ -37,7 +37,7 @@ result = client['openeuler']['commits'].aggregate([
 
 result = list(result)
 print(len(result))
-with open('data/2011-12-31.csv', 'w') as outf:
+with open('data/2010-12-31.csv', 'w') as outf:
     for doc in result:
         outf.write(','.join([doc['_id'], doc['commit'], str(doc['author_time'])]))
         outf.write('\n')

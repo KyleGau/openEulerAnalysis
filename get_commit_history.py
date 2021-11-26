@@ -3,7 +3,7 @@ from tqdm import tqdm
 from datetime import datetime
 from pymongo import MongoClient
 
-log_path = '/data/gitee_repos/openeuler.log'
+log_path = '/data/repos/openeuler.log'
 # log_path = 'sample'
 log_file = open(log_path, errors='ignore')
 content = log_file.read()

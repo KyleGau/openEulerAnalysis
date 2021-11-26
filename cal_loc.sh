@@ -1,6 +1,6 @@
 #!/bin/bash
 wd=`pwd`
-folder='/data/gitee_repos/openeuler/'
+folder='/data/repos/openeuler/'
 year=$1
 month=$2
 day=$3

@@ -1,22 +1,23 @@
 import re
+import sys
 from tqdm import tqdm
 from datetime import datetime
 from pymongo import MongoClient
 
-log_path = '/data/repos/openeuler.log'
-# log_path = 'sample'
+project = sys.argv[1]
+log_path = '/data/repos/{}.log'.format(project)
 log_file = open(log_path, errors='ignore')
 content = log_file.read()
 log_file.close()
 
 client = MongoClient(host='127.0.0.1', port=27017)
-db = client['openeuler']
-commits_collection = db['commits']
+db = client['os_log']
+commits_collection = db['{}_commits'.format(project)]
 commits_collection.drop()
-commits_collection = db['commits']
-file_history_collection = db['file_history']
+commits_collection = db['{}_commits'.format(project)]
+file_history_collection = db['{}_file_history'.format(project)]
 file_history_collection.drop()
-file_history_collection = db['file_history']
+file_history_collection = db['{}_file_history'.format(project)]
 
 records = list(content.split('STARTOFTHECOMMIT:')[1:])
 docs = []

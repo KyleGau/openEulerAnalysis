@@ -21,16 +21,29 @@ python getOrgRepos.py src-openeuler
 ```
 4. Save commit content and file change history to MongoDB
 ```shell
-python get_commit_history.py
+python get_commit_history.py openeuler
+python get_commit_history.py linux
 ```
-5. Count LOC at 2010-12-31, 2019-9-30, 2019-12-31, and 2021-10-31
+5. Count openeuler's LOC at 2010-12-31, 2019-9-30, 2019-12-31, and 2021-10-31
 ```shell
-python retrieve_snapshot.py 2010 12 31
-./cal_loc 2010 12 31
-python retrieve_snapshot.py 2019 9 30
-./cal_loc 2019 9 30
-python retrieve_snapshot.py 2019 12 31
-./cal_loc 2019 12 31
-python retrieve_snapshot.py 2021 10 31
-./cal_loc.sh 2021 10 31
+python retrieve_snapshot.py openeuler 2010 12 31
+./cal_loc.sh openeuler 2010 12 31
+python retrieve_snapshot.py openeuler 2019 9 30
+./cal_loc.sh openeuler 2019 9 30
+python retrieve_snapshot.py openeuler 2019 12 31
+./cal_loc.sh openeuler 2019 12 31
+python retrieve_snapshot.py openeuler 2021 10 31
+./cal_loc.sh openeuler 2021 10 31
+```
+6. Count Linux's LOC at the first commit of git log, 2019-9-30, 2021-10-31
+```shell
+first_commit=`tail -1 linux.delta | cut -d\; -f 2`
+first_at=`tail -1 linux.delta | cut -d\; -f 10`
+dt=`date -d @$first_at +"%Y-%m-%d %H:%M:%S"`
+echo "linux,$first_commit,$dt" > data/linux-2005-4-17.csv
+./cal_loc.sh linux 2005 4 17
+python retrieve_snapshot.py linux 2019 9 30
+./cal_loc.sh linux 2019 9 30
+python retrieve_snapshot.py linux 2021 10 31
+./cal_loc.sh linux 2021 10 31
 ```
